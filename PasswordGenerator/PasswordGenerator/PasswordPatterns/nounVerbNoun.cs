@@ -8,22 +8,19 @@ namespace PasswordGenerator
 {
     public class NounVerbNoun : IPasswordPattern
     {
-        private List<Word> nouns;
-        private List<Word> verbs;
         private Random rnd;
 
-        public void Initialize(List<Word> wordlist, Random random)
+        public void Initialize(Random random)
         {
             rnd = random;
-
-            nouns = wordlist.Where(x => x.PartOfSpeech == PartsOfSpeech.n).ToList();
-            verbs = wordlist.Where(x => x.PartOfSpeech == PartsOfSpeech.v).ToList();
-
         }
 
         public string GetPattern()
         {
-            return string.Format("{0}.{1}.{2}", nouns[rnd.Next((int)(nouns.Count / 2))].Lemma, verbs[rnd.Next((int)(verbs.Count / 2))].Lemma, nouns[rnd.Next((int)(nouns.Count / 2))].Lemma);
+            return string.Format("{0}.{1}.{2}",
+                WordLibs.UppercaseWords(WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)]), 
+                WordLibs.Verbs[rnd.Next(WordLibs.Verbs.Length)], 
+                WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)]);
         }
 
         public string GetPatternTitle()

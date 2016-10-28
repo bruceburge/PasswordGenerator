@@ -8,7 +8,7 @@ namespace PasswordGenerator
 {
     public interface IPasswordPattern
     {
-        void Initialize(List<Word> wordlist, Random random);
+        void Initialize(Random random);
 
         string GetPattern();
         string GetPatternTitle();

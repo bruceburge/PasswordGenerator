@@ -18,7 +18,7 @@ namespace PasswordGenerator
             return "Blank";
         }
 
-        public void Initialize(List<Word> wordlist, Random random)
+        public void Initialize(Random random)
         {
 
         }

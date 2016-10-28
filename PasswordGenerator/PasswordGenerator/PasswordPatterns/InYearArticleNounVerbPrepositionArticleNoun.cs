@@ -8,39 +8,30 @@ namespace PasswordGenerator
 {
     class InYearArticleNounVerbPrepositionArticleNoun : IPasswordPattern
     {
-        private List<Word> nouns;
-        private List<Word> verbs;
-        private List<Word> articles;
-        private List<Word> prepositions;
 
         private Random rnd;
 
-        public void Initialize(List<Word> wordlist, Random random)
+        public void Initialize(Random random)
         {
             rnd = random;
-
-            nouns = wordlist.Where(x => x.PartOfSpeech == PartsOfSpeech.n).ToList();
-            verbs = wordlist.Where(x => x.PartOfSpeech == PartsOfSpeech.v).ToList();
-            articles = wordlist.Where(x => x.PartOfSpeech == PartsOfSpeech.a).ToList();
-            prepositions = wordlist.Where(x => x.PartOfSpeech == PartsOfSpeech.i).ToList();
 
         }
 
         public string GetPattern()
         {
-            var a1 = articles[rnd.Next((articles.Count))].Lemma;
-            var n1 = nouns[rnd.Next((nouns.Count))].Lemma;
-            var v1 = verbs[rnd.Next((verbs.Count))].Lemma;
-            var p1 = prepositions[rnd.Next((prepositions.Count))].Lemma;
-            var a2 = articles[rnd.Next((articles.Count))].Lemma;
-            var n2 = nouns[rnd.Next((nouns.Count))].Lemma;
+            var a1 = WordLibs.Articles[rnd.Next(WordLibs.Articles.Length)];
+            var n1 = WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)];
+            var v1 = WordLibs.PastVerbs[rnd.Next(WordLibs.PastVerbs.Length)];
+            var p1 = WordLibs.Prepositions[rnd.Next(WordLibs.Prepositions.Length)];
+            var a2 = WordLibs.Articles[rnd.Next(WordLibs.Articles.Length)];
+            var n2 = WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)];
 
             return string.Format("{0}.{1}.{2}.{3}.{4}.{5}.{6}", "In." + rnd.Next(1400, 2000), a1, n1, v1, p1, a2, n2);
         }
 
         public string GetPatternTitle()
         {
-            return "In.Year.Article.Noun.Verb.Preposition.Article.Noun";
+            return "In.Year.Article.Noun.[past]Verb.Preposition.Article.Noun";
         }
     }
 }

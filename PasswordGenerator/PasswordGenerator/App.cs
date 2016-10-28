@@ -13,7 +13,6 @@ namespace PasswordGenerator
         {
             Random rnd = new Random();
             //get word list
-            List<Word> tmp = new WordList().LoadWordList();
 
             passwordPattern = null;
 
@@ -42,7 +41,7 @@ namespace PasswordGenerator
                 {
                     passwordPattern = GetRandomPattern(rnd);
                     button.Disabled = false;
-                    passwordPattern.Initialize(tmp, rnd);
+                    passwordPattern.Initialize(rnd);
                     //Console.WriteLine(passwordPattern.GetPatternTitle());
                     passwordLabel.InnerHTML = " "+passwordPattern.GetPatternTitle();
                 }
@@ -65,11 +64,12 @@ namespace PasswordGenerator
             Document.Body.AppendChild(passwordLabel);
             Document.Body.AppendChild(new HTMLBRElement());
 
-            Document.Body.AppendChild(clearButton);
-            Document.Body.AppendChild(new HTMLBRElement());
-
-
-            Document.Body.AppendChild(button);
+            //Document.Body.AppendChild();
+            var div = new HTMLDivElement();
+            div.AppendChild(clearButton);            
+            div.AppendChild(button);
+            Document.Body.AppendChild(div);
+            //Document.Body.AppendChild(button);
             Document.Body.AppendChild(new HTMLBRElement());            
             Document.Body.AppendChild(passwordList);
 
