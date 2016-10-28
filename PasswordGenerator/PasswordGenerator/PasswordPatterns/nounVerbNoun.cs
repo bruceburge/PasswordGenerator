@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PasswordGenerator
 {
@@ -17,9 +13,10 @@ namespace PasswordGenerator
 
         public string GetPattern()
         {
-            return string.Format("{0}.{1}.{2}",
-                WordLibs.UppercaseWords(WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)]), 
-                WordLibs.Verbs[rnd.Next(WordLibs.Verbs.Length)], 
+            return string.Format(
+                "{0}.{1}.{2}",
+                WordLibs.UppercaseWords(WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)]),
+                WordLibs.Verbs[rnd.Next(WordLibs.Verbs.Length)],
                 WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)]);
         }
 

@@ -1,38 +1,30 @@
 ﻿using System;
-using Bridge;
 using Bridge.Html5;
-using System.Collections.Generic;
 
 namespace PasswordGenerator
 {
     public class App
     {
-        static IPasswordPattern passwordPattern;
+        private static IPasswordPattern passwordPattern;
 
         public static void Main()
         {
             Random rnd = new Random();
-            //get word list
 
             passwordPattern = null;
 
             var passwordLabel = new HTMLDivElement { Id = "passwordLabel" };
             var passwordList = new HTMLDivElement { Id = "passwords" };
 
-
             var button = new HTMLButtonElement
             {
-
                 InnerHTML = "Generate Password",
                 OnClick = (ev) =>
                 {
-                    //call gen
-                    //Console.WriteLine(passwordPattern.GetPattern());
                     passwordList.InnerHTML += passwordPattern.GetPattern() + "<br/>";
                 }
             };
             button.Disabled = true;
-
 
             var patternButton = new HTMLButtonElement
             {
@@ -43,7 +35,7 @@ namespace PasswordGenerator
                     button.Disabled = false;
                     passwordPattern.Initialize(rnd);
                     //Console.WriteLine(passwordPattern.GetPatternTitle());
-                    passwordLabel.InnerHTML = " "+passwordPattern.GetPatternTitle();
+                    passwordLabel.InnerHTML = " " + passwordPattern.GetPatternTitle();
                 }
             };
 
@@ -56,7 +48,6 @@ namespace PasswordGenerator
                 }
             };
 
-
             Document.BgColor = "black";
             Document.FgColor = "White";
 
@@ -64,19 +55,12 @@ namespace PasswordGenerator
             Document.Body.AppendChild(passwordLabel);
             Document.Body.AppendChild(new HTMLBRElement());
 
-            //Document.Body.AppendChild();
             var div = new HTMLDivElement();
-            div.AppendChild(clearButton);            
+            div.AppendChild(clearButton);
             div.AppendChild(button);
             Document.Body.AppendChild(div);
-            //Document.Body.AppendChild(button);
-            Document.Body.AppendChild(new HTMLBRElement());            
+            Document.Body.AppendChild(new HTMLBRElement());
             Document.Body.AppendChild(passwordList);
-
-            
-
-
-
         }
 
         private static IPasswordPattern GetRandomPattern(Random rnd)
@@ -86,9 +70,11 @@ namespace PasswordGenerator
                 case 0:
                     passwordPattern = new InYearArticleNounVerbPrepositionArticleNoun();
                     break;
+
                 case 1:
                     passwordPattern = new VerbVerbAndVerb();
                     break;
+
                 case 2:
                     passwordPattern = new NounVerbNoun();
                     break;

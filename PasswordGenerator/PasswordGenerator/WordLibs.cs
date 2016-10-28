@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PasswordGenerator
+﻿namespace PasswordGenerator
 {
     public static class WordLibs
     {
-
         public static string Numbers = "1234567890";
         public static string Vowels = "aeiou";
         public static string Consconsonants = "bcdfghjklmnpqrstwxyz";
@@ -16,9 +9,10 @@ namespace PasswordGenerator
         public static string Specials = "!@#$%^&*+=?.,:|~_-";
         public static string Letters = Consconsonants + Vowels;
 
-
         public static string[] Articles = { "the", "a", "one", "some", "any", };
+
         #region Pronouns
+
         public static string[] Pronouns =
         {
             "I",
@@ -46,8 +40,11 @@ namespace PasswordGenerator
             "ours",
             "theirs"
         };
-        #endregion
+
+        #endregion Pronouns
+
         #region Nouns
+
         public static string[] Nouns =
         {
             "time",
@@ -152,8 +149,10 @@ namespace PasswordGenerator
             "teacher"
         };
 
-        #endregion
+        #endregion Nouns
+
         #region Verbs
+
         public static string[] Verbs =
         {
             "be",
@@ -257,8 +256,11 @@ namespace PasswordGenerator
             "wait",
             "cause"
         };
-        #endregion
+
+        #endregion Verbs
+
         #region Past Verb
+
         public static string[] PastVerbs =
         {
             "awoke",
@@ -361,7 +363,8 @@ namespace PasswordGenerator
             "won",
             "wrote"
     };
-        #endregion
+
+        #endregion Past Verb
 
         public static string[] Prepositions = { "to", "from", "over", "under", "on", };
 
@@ -369,8 +372,8 @@ namespace PasswordGenerator
         /// Upcase first letter in a word
         /// https://www.dotnetperls.com/uppercase-first-letter
         /// </summary>
-        /// <param name="value">word to upcase</param>
-        /// <returns>upcased word</returns>
+        /// <param name="value">word to uppercase</param>
+        /// <returns>uppercased word</returns>
         public static string UppercaseWords(string value)
         {
             char[] array = value.ToCharArray();
@@ -394,6 +397,7 @@ namespace PasswordGenerator
                     }
                 }
             }
+
             return new string(array);
         }
     }

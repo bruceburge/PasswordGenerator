@@ -30,7 +30,6 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
         },
         $main: function () {
             var rnd = new System.Random.ctor();
-            //get word list
 
             PasswordGenerator.App.passwordPattern = null;
 
@@ -41,17 +40,13 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
                 id: "passwords"
             } );
 
-
             var button = Bridge.merge(document.createElement('button'), {
                 innerHTML: "Generate Password",
                 onclick: function (ev) {
-                    //call gen
-                    //Console.WriteLine(passwordPattern.GetPattern());
                     passwordList.innerHTML = System.String.concat(passwordList.innerHTML, (System.String.concat(PasswordGenerator.App.passwordPattern.PasswordGenerator$IPasswordPattern$getPattern(), "<br/>")));
                 }
             } );
             button.disabled = true;
-
 
             var patternButton = Bridge.merge(document.createElement('button'), {
                 innerHTML: "Random Pattern",
@@ -71,7 +66,6 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
                 }
             } );
 
-
             document.bgColor = "black";
             document.fgColor = "White";
 
@@ -79,19 +73,12 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
             document.body.appendChild(passwordLabel);
             document.body.appendChild(document.createElement('br'));
 
-            //Document.Body.AppendChild();
             var div = document.createElement('div');
             div.appendChild(clearButton);
             div.appendChild(button);
             document.body.appendChild(div);
-            //Document.Body.AppendChild(button);
             document.body.appendChild(document.createElement('br'));
             document.body.appendChild(passwordList);
-
-
-
-
-
         }
     });
 
@@ -132,8 +119,8 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
              * @public
              * @this PasswordGenerator.WordLibs
              * @memberof PasswordGenerator.WordLibs
-             * @param   {string}    value    word to upcase
-             * @return  {string}             upcased word
+             * @param   {string}    value    word to uppercase
+             * @return  {string}             uppercased word
              */
             uppercaseWords: function (value) {
                 var array = System.String.toCharArray(value, 0, value.length);
@@ -152,6 +139,7 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
                         }
                     }
                 }
+
                 return String.fromCharCode.apply(null, array);
             }
         }
@@ -173,7 +161,6 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
             return "Blank";
         },
         initialize: function (random) {
-
         }
     });
 
@@ -189,17 +176,16 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
         },
         initialize: function (random) {
             this.rnd = random;
-
         },
         getPattern: function () {
             var a1 = PasswordGenerator.WordLibs.articles[this.rnd.next$1(PasswordGenerator.WordLibs.articles.length)];
             var n1 = PasswordGenerator.WordLibs.nouns[this.rnd.next$1(PasswordGenerator.WordLibs.nouns.length)];
-            var v1 = PasswordGenerator.WordLibs.pastVerbs[this.rnd.next$1(PasswordGenerator.WordLibs.pastVerbs.length)];
+            var pv1 = PasswordGenerator.WordLibs.pastVerbs[this.rnd.next$1(PasswordGenerator.WordLibs.pastVerbs.length)];
             var p1 = PasswordGenerator.WordLibs.prepositions[this.rnd.next$1(PasswordGenerator.WordLibs.prepositions.length)];
             var a2 = PasswordGenerator.WordLibs.articles[this.rnd.next$1(PasswordGenerator.WordLibs.articles.length)];
             var n2 = PasswordGenerator.WordLibs.nouns[this.rnd.next$1(PasswordGenerator.WordLibs.nouns.length)];
 
-            return System.String.format("{0}.{1}.{2}.{3}.{4}.{5}.{6}", "In." + this.rnd.next$2(1400, 2000), a1, n1, v1, p1, a2, n2);
+            return System.String.format("{0}.{1}.{2}.{3}.{4}.{5}.{6}", "In." + this.rnd.next$2(1400, 2000), a1, n1, pv1, p1, a2, n2);
         },
         getPatternTitle: function () {
             return "In.Year.Article.Noun.[past]Verb.Preposition.Article.Noun";
@@ -241,9 +227,7 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
             this.rnd = random;
         },
         getPattern: function () {
-
             return System.String.format("{0}.{1}.and.{2}", PasswordGenerator.WordLibs.uppercaseWords(PasswordGenerator.WordLibs.verbs[this.rnd.next$1(PasswordGenerator.WordLibs.verbs.length)]), PasswordGenerator.WordLibs.uppercaseWords(PasswordGenerator.WordLibs.verbs[this.rnd.next$1(PasswordGenerator.WordLibs.verbs.length)]), PasswordGenerator.WordLibs.uppercaseWords(PasswordGenerator.WordLibs.verbs[this.rnd.next$1(PasswordGenerator.WordLibs.verbs.length)]));
-
         },
         getPatternTitle: function () {
             return "Verb.Verb.And.Verb";

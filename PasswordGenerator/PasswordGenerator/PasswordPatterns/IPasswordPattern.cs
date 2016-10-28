@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PasswordGenerator
 {
@@ -11,6 +7,7 @@ namespace PasswordGenerator
         void Initialize(Random random);
 
         string GetPattern();
+
         string GetPatternTitle();
     }
 }
