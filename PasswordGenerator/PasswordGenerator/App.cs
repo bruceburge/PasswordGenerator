@@ -65,7 +65,7 @@ namespace PasswordGenerator
 
         private static IPasswordPattern GetRandomPattern(Random rnd)
         {
-            switch (rnd.Next(0, 3))
+            switch (rnd.Next(0, 5))
             {
                 case 0:
                     passwordPattern = new InYearArticleNounVerbPrepositionArticleNoun();
@@ -77,6 +77,14 @@ namespace PasswordGenerator
 
                 case 2:
                     passwordPattern = new NounVerbNoun();
+                    break;
+
+                case 3:
+                    passwordPattern = new VerbTheNoun();
+                    break;
+
+                case 4:
+                    passwordPattern = new VerbTheNounAndVerbTheNoun();
                     break;
 
                 default:

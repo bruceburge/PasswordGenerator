@@ -10,7 +10,7 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
         statics: {
             passwordPattern: null,
             getRandomPattern: function (rnd) {
-                switch (rnd.next$2(0, 3)) {
+                switch (rnd.next$2(0, 5)) {
                     case 0: 
                         PasswordGenerator.App.passwordPattern = new PasswordGenerator.InYearArticleNounVerbPrepositionArticleNoun();
                         break;
@@ -19,6 +19,12 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
                         break;
                     case 2: 
                         PasswordGenerator.App.passwordPattern = new PasswordGenerator.NounVerbNoun();
+                        break;
+                    case 3: 
+                        PasswordGenerator.App.passwordPattern = new PasswordGenerator.VerbTheNoun();
+                        break;
+                    case 4: 
+                        PasswordGenerator.App.passwordPattern = new PasswordGenerator.VerbTheNounAndVerbTheNoun();
                         break;
                     default: 
                         PasswordGenerator.App.passwordPattern = new PasswordGenerator.NounVerbNoun();
@@ -210,6 +216,50 @@ Bridge.assembly("PasswordGenerator", function ($asm, globals) {
         },
         getPatternTitle: function () {
             return "Noun.Verb.Noun";
+        }
+    });
+
+    Bridge.define("PasswordGenerator.VerbTheNoun", {
+        inherits: [PasswordGenerator.IPasswordPattern],
+        rnd: null,
+        config: {
+            alias: [
+            "initialize", "PasswordGenerator$IPasswordPattern$initialize",
+            "getPattern", "PasswordGenerator$IPasswordPattern$getPattern",
+            "getPatternTitle", "PasswordGenerator$IPasswordPattern$getPatternTitle"
+            ]
+        },
+        initialize: function (random) {
+            this.rnd = random;
+        },
+        getPattern: function () {
+            return System.String.format("{0}.{1}.{2}", PasswordGenerator.WordLibs.uppercaseWords(PasswordGenerator.WordLibs.verbs[this.rnd.next$1(PasswordGenerator.WordLibs.verbs.length)]), "The", PasswordGenerator.WordLibs.uppercaseWords(PasswordGenerator.WordLibs.nouns[this.rnd.next$1(PasswordGenerator.WordLibs.nouns.length)]));
+        },
+        getPatternTitle: function () {
+            return "Verb.The.Noun";
+        }
+    });
+
+    Bridge.define("PasswordGenerator.VerbTheNounAndVerbTheNoun", {
+        inherits: [PasswordGenerator.IPasswordPattern],
+        rnd: null,
+        config: {
+            alias: [
+            "initialize", "PasswordGenerator$IPasswordPattern$initialize",
+            "getPattern", "PasswordGenerator$IPasswordPattern$getPattern",
+            "getPatternTitle", "PasswordGenerator$IPasswordPattern$getPatternTitle"
+            ]
+        },
+        initialize: function (random) {
+            this.rnd = random;
+        },
+        getPattern: function () {
+            var verbTheNoun = new PasswordGenerator.VerbTheNoun();
+            verbTheNoun.initialize(this.rnd);
+            return System.String.format("{0}.{1}.{2}", verbTheNoun.getPattern(), "And", verbTheNoun.getPattern());
+        },
+        getPatternTitle: function () {
+            return "Verb.The.Noun.And.Verb.The.Noun";
         }
     });
 

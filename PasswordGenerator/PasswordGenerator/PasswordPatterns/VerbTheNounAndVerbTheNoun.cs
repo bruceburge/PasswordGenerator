@@ -2,7 +2,7 @@
 
 namespace PasswordGenerator
 {
-    public class VerbTheNoun : IPasswordPattern
+    public class VerbTheNounAndVerbTheNoun : IPasswordPattern
     {
         private Random rnd;
 
@@ -13,16 +13,18 @@ namespace PasswordGenerator
 
         public string GetPattern()
         {
+            var verbTheNoun = new VerbTheNoun();
+            verbTheNoun.Initialize(rnd);
             return string.Format(
                 "{0}.{1}.{2}",
-                WordLibs.UppercaseWords(WordLibs.Verbs[rnd.Next(WordLibs.Verbs.Length)]),
-                "The",
-                WordLibs.UppercaseWords(WordLibs.Nouns[rnd.Next(WordLibs.Nouns.Length)]));
+                verbTheNoun.GetPattern(),
+                "And",
+                verbTheNoun.GetPattern());
         }
 
         public string GetPatternTitle()
         {
-            return "Verb.The.Noun";
+            return "Verb.The.Noun.And.Verb.The.Noun";
         }
     }
 }
